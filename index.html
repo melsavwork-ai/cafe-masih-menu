@@ -3,94 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07150e">
 <title>کافه مسیح | Café Masih</title>
 <style>
-:root{--green:#315c45;--light:#f4f1e8;--ink:#26352d;--gold:#b5965a}
-*{box-sizing:border-box}body{margin:0;background:var(--light);color:var(--ink);font-family:Tahoma,Arial,sans-serif}
-header{background:var(--green);color:#fff;text-align:center;padding:38px 18px 32px}
-header h1{margin:0;font-size:30px;letter-spacing:1px} header p{margin:9px 0 0;opacity:.9}
-.container{max-width:720px;margin:auto;padding:18px 14px 50px}
-nav{display:flex;gap:8px;overflow:auto;padding:4px 0 16px;position:sticky;top:0;background:var(--light);z-index:2}
-nav a{white-space:nowrap;text-decoration:none;color:var(--green);border:1px solid #c9d0c8;border-radius:30px;padding:9px 13px;background:#fff;font-size:13px}
-section{margin:18px 0 28px}h2{font-size:20px;color:var(--green);border-bottom:2px solid #d7d2c5;padding-bottom:9px}
-.item{display:flex;justify-content:space-between;gap:15px;padding:13px 2px;border-bottom:1px solid #ddd8cc}
-.name{font-weight:600}.price{font-weight:700;white-space:nowrap;color:var(--green)}
-.empty{color:#999;font-size:13px;font-weight:normal}
-footer{text-align:center;color:#777;font-size:12px;padding:20px}
+:root{--bg:#06120c;--panel:#0c2117;--line:#2d5a43;--cream:#f2ead9;--muted:#b8c7bb;--gold:#c7a66a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at top,#123322 0,#06120c 42%,#030a06 100%);color:var(--cream);font-family:Tahoma,Arial,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:radial-gradient(ellipse at 10% 10%,transparent 0 50%,#244e38 51% 52%,transparent 53%),radial-gradient(ellipse at 90% 20%,transparent 0 50%,#244e38 51% 52%,transparent 53%);background-size:320px 260px,360px 300px}
+header{padding:25px 16px 20px;text-align:center;border-bottom:1px solid #c7a66a55}
+.logo{max-width:170px;max-height:95px;object-fit:contain}
+h1{font-size:26px;letter-spacing:4px;margin:3px 0}.sub{color:var(--muted);font-size:13px}
+.container{max-width:980px;margin:auto;padding:10px 14px 70px}
+nav{display:flex;gap:8px;overflow:auto;position:sticky;top:0;z-index:20;padding:9px 0 12px;background:#06120ced;backdrop-filter:blur(10px)}
+nav a{color:var(--cream);text-decoration:none;border:1px solid var(--line);background:#0c2117;border-radius:999px;padding:8px 13px;white-space:nowrap;font-size:13px}
+.section-title{display:flex;align-items:center;gap:12px;margin:27px 0 13px;font-size:21px;font-weight:800}
+.section-title:before,.section-title:after{content:"";height:1px;background:linear-gradient(90deg,transparent,var(--gold));flex:1}.section-title:after{background:linear-gradient(90deg,var(--gold),transparent)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.item{display:flex;align-items:center;gap:10px;min-height:105px;padding:8px;background:linear-gradient(135deg,#102a1ef5,#06120cf5);border:1px solid #417153a8;border-radius:14px;box-shadow:0 8px 20px #0003}
+.thumb{width:108px;height:84px;flex:0 0 108px;border-radius:10px;background-image:url("menu-sprite-final.jpg");background-size:700% 700%;background-repeat:no-repeat;background-color:#0a1b12}
+.info{min-width:0;flex:1}.name{font-size:14px;font-weight:700;line-height:1.7}.price{margin-top:7px;color:#e2c27e;font-size:14px;font-weight:800}
+footer{text-align:center;color:#8fa095;font-size:12px;padding:30px 10px}
+.admin-toggle{position:fixed;left:14px;bottom:14px;z-index:50;border:1px solid var(--gold);background:#0b2016;color:var(--cream);border-radius:999px;padding:10px 14px;font-family:inherit;box-shadow:0 8px 24px #0008}
+.admin{display:none;position:fixed;inset:0;z-index:100;background:#031009f2;backdrop-filter:blur(8px);overflow:auto;padding:22px}
+.admin.open{display:block}.admin-box{max-width:760px;margin:20px auto;background:#0b2016;border:1px solid var(--line);border-radius:18px;padding:18px}
+.admin-head{display:flex;justify-content:space-between;align-items:center}.admin h2{margin:0}.admin p{color:var(--muted);font-size:12px;line-height:1.8}
+.editor-row{display:grid;grid-template-columns:1fr 140px;gap:8px;align-items:center;margin:7px 0}
+.editor-row input{width:100%;padding:10px;border-radius:9px;border:1px solid #3b6650;background:#07150e;color:#fff;font-family:inherit}
+.btn{border:1px solid var(--line);background:#102a1e;color:#fff;padding:10px 14px;border-radius:10px;font-family:inherit}.btn.primary{border-color:var(--gold);color:#f0d89f}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.thumb{width:112px;flex-basis:112px;height:88px}.name{font-size:15px}}
 </style>
 </head>
 <body>
-<header><h1>CAFÉ MASIH</h1><p>کافه مسیح • منوی آنلاین</p></header>
+<header>
+<img class="logo" src="logo-tiny.jpg" alt="MASIH CAFÉ">
+<h1>CAFÉ MASIH</h1><div class="sub">کافه مسیح • منوی آنلاین</div>
+</header>
 <div class="container">
 <nav>
-<a href="#espresso">اسپرسو بار</a><a href="#shake">شیک</a><a href="#smoothie">اسموتی</a>
-<a href="#fries">فرایز</a><a href="#hot">بار گرم</a><a href="#panini">پنینی</a>
+<a href="#espresso">اسپرسو بار</a><a href="#shake">شیک</a><a href="#smoothie">اسموتی</a><a href="#fries">فرایز</a><a href="#hot">بار گرم</a><a href="#panini">پنینی</a>
 </nav>
-
-<section id="espresso"><h2>☕ اسپرسو بار</h2>
-<div class="item"><span class="name">دبل ۱۰۰٪ روبوستا</span><span class="price">۱۲۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">دبل ۷۰/۳۰</span><span class="price">۱۳۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">سینگل</span><span class="price">۱۰۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">لته ۱۰۰٪ روبوستا</span><span class="price">۱۷۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">لته ۷۰/۳۰</span><span class="price">۱۸۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">امریکانو ۱۰۰٪ روبوستا</span><span class="price">۱۴۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">امریکانو ۷۰/۳۰</span><span class="price">۱۵۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">کورتادو ۱۰۰٪ روبوستا</span><span class="price">۱۷۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">کورتادو ۷۰/۳۰</span><span class="price">۱۸۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">کاپوچینو</span><span class="price">۲۰۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">موکا ۱۰۰٪ روبوستا</span><span class="price">۲۳۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">موکا ۷۰/۳۰</span><span class="price">۲۴۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">کارامل ماکیاتو ۱۰۰٪ روبوستا</span><span class="price">۲۸۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">کارامل ماکیاتو ۷۰/۳۰</span><span class="price">۲۹۰٬۰۰۰ تومان</span></div>
-</section>
-
-<section id="shake"><h2>🥤 شیک</h2>
-<div class="item"><span class="name">شیک شکلات</span><span class="price">۳۴۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">شیک بادام‌زمینی</span><span class="price">۳۵۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">شیک موز شکلات</span><span class="price">۳۶۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">شیک توت‌فرنگی وانیل</span><span class="price">۳۴۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">شیک لوتوس</span><span class="price">۳۶۰٬۰۰۰ تومان</span></div>
-</section>
-
-<section id="smoothie"><h2>🍓 اسموتی</h2>
-<div class="item"><span class="name">شیر موز</span><span class="price">۳۲۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">کوک لیون</span><span class="price">۲۵۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">انبه توت‌فرنگی بستنی</span><span class="price">۳۷۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">معجون ترش</span><span class="price">۳۶۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">بلو بنانا</span><span class="price">۳۸۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">موهیتو</span><span class="price">۲۸۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">رد موهیتو</span><span class="price">۲۹۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">خیار سکنجبین</span><span class="price empty">قیمت بعداً اضافه می‌شود</span></div>
-<div class="item"><span class="name">سانرایز</span><span class="price">۳۷۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">ژوال</span><span class="price">۲۹۰٬۰۰۰ تومان</span></div>
-</section>
-
-<section id="fries"><h2>🍟 فرایز</h2>
-<div class="item"><span class="name">سیب‌زمینی</span><span class="price">۳۸۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">سیب‌زمینی با پنیر</span><span class="price">۵۲۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">سیب‌زمینی ویژه</span><span class="price">۵۸۰٬۰۰۰ تومان</span></div>
-</section>
-
-<section id="hot"><h2>🔥 بار گرم</h2>
-<div class="item"><span class="name">هات چاکلت</span><span class="price">۲۷۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">وایت چاکلت</span><span class="price">۲۸۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">شیرکاکائو</span><span class="price">۲۴۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">هات بنانا</span><span class="price">۳۲۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">شیر بیسکوییت</span><span class="price">۳۰۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">ماسالا</span><span class="price">۲۲۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">چای کرک</span><span class="price">۲۵۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">چای انگلیسی</span><span class="price">۱۸۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">چای ساده</span><span class="price">۱۳۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">چای زعفران</span><span class="price">۱۶۰٬۰۰۰ تومان</span></div>
-<div class="item"><span class="name">شیر عسل</span><span class="price">۲۰۰٬۰۰۰ تومان</span></div>
-</section>
-
-<section id="panini"><h2>🥪 پنینی</h2>
-<div class="item"><span class="name">پنینی مرغ</span><span class="price empty">قیمت بعداً اضافه می‌شود</span></div>
-<div class="item"><span class="name">پنینی ژامبون</span><span class="price empty">قیمت بعداً اضافه می‌شود</span></div>
-<div class="item"><span class="name">پنینی گوشت</span><span class="price empty">قیمت بعداً اضافه می‌شود</span></div>
-</section>
-<footer>کافه مسیح • منو ممکن است با تغییر قیمت‌ها به‌روزرسانی شود.</footer>
+<div id="menu"></div>
+<footer>کافه مسیح • منوی آنلاین</footer>
 </div>
+<button class="admin-toggle" onclick="openAdmin()">⚙️ ویرایش قیمت‌ها</button>
+<div class="admin" id="admin"><div class="admin-box">
+<div class="admin-head"><h2>مدیریت قیمت‌ها</h2><button class="btn" onclick="closeAdmin()">بستن</button></div>
+<p>قیمت‌ها در مرورگر همین دستگاه ذخیره می‌شوند. برای تغییر قیمت عمومی سایت، مقدار قیمت‌ها را در بخش DATA همین فایل تغییر بده و دوباره فایل را در GitHub آپلود کن.</p>
+<div id="editor"></div><br><button class="btn primary" onclick="savePrices()">ذخیره قیمت‌ها</button>
+</div></div>
+<script>
+const DATA=[
+{id:"espresso",title:"اسپرسو بار",items:[
+["دبل ۱۰۰٪ روبوستا",120000,0,0],["دبل ۷۰/۳۰",130000,1,0],["سینگل",100000,2,0],["لته ۱۰۰٪ روبوستا",170000,3,0],["لته ۷۰/۳۰",180000,4,0],["امریکانو ۱۰۰٪ روبوستا",140000,5,0],["امریکانو ۷۰/۳۰",150000,6,0],
+["کورتادو ۱۰۰٪ روبوستا",170000,0,1],["کورتادو ۷۰/۳۰",180000,1,1],["کاپوچینو",200000,2,1],["موکا ۱۰۰٪ روبوستا",230000,3,1],["موکا ۷۰/۳۰",240000,4,1],["کارامل ماکیاتو ۱۰۰٪ روبوستا",280000,5,1],["کارامل ماکیاتو ۷۰/۳۰",290000,6,1]]},
+{id:"shake",title:"شیک",items:[["شیک شکلات",340000,0,2],["شیک بادام‌زمینی",350000,1,2],["شیک موز شکلات",360000,2,2],["شیک لوتوس",360000,3,2],["شیک توت‌فرنگی وانیل",340000,6,2]]},
+{id:"smoothie",title:"اسموتی",items:[["شیر موز",320000,4,2],["کوک لیون",250000,5,2],["انبه توت‌فرنگی بستنی",370000,6,2],["معجون ترش",360000,0,3],["بلو بنانا",380000,1,3],["موهیتو",280000,2,3],["رد موهیتو",290000,3,3],["خیار سکنجبین",0,4,3],["سانرایز",370000,5,3],["ژوال",290000,6,3]]},
+{id:"fries",title:"فرایز",items:[["سیب‌زمینی",380000,0,4],["سیب‌زمینی با پنیر",520000,1,4],["سیب‌زمینی ویژه",580000,2,4]]},
+{id:"hot",title:"بار گرم",items:[["هات چاکلت",270000,3,4],["وایت چاکلت",280000,4,4],["شیرکاکائو",240000,5,4],["هات بنانا",320000,6,4],["شیر بیسکوییت",300000,0,5],["ماسالا",220000,1,5],["چای کرک",250000,2,5],["چای انگلیسی",180000,3,5],["چای ساده",130000,4,5],["چای زعفران",160000,5,5],["شیر عسل",200000,6,5]]},
+{id:"panini",title:"پنینی",items:[["پنینی مرغ",0,0,6],["پنینی ژامبون",0,1,6],["پنینی گوشت",0,2,6]]}
+];
+const menu=document.getElementById("menu");let all=[];
+DATA.forEach(sec=>{let s=document.createElement("section");s.id=sec.id;s.innerHTML='<div class="section-title"><span>'+sec.title+'</span></div><div class="grid"></div>';let g=s.querySelector(".grid");
+sec.items.forEach((x)=>{let i=all.length;all.push(x);let [name,price,c,r]=x;let el=document.createElement("article");el.className="item";el.innerHTML='<div class="thumb" style="background-position:'+(c*16.6667)+'% '+(r*16.6667)+'%"></div><div class="info"><div class="name">'+name+'</div><div class="price" id="p'+i+'">'+(price?Number(price).toLocaleString("fa-IR")+" تومان":"قیمت بعداً اضافه می‌شود")+'</div></div>';g.appendChild(el)});menu.appendChild(s)});
+function apply(){all.forEach((x,i)=>{let v=localStorage.getItem("masih-price-"+i);if(v!==null){document.getElementById("p"+i).textContent=v?Number(v).toLocaleString("fa-IR")+" تومان":"قیمت بعداً اضافه می‌شود"}})}
+function openAdmin(){let e=document.getElementById("editor");e.innerHTML="";all.forEach((x,i)=>{let v=localStorage.getItem("masih-price-"+i);if(v===null)v=x[1]||"";e.innerHTML+='<div class="editor-row"><label>'+x[0]+'</label><input inputmode="numeric" data-i="'+i+'" value="'+v+'"></div>'});document.getElementById("admin").classList.add("open")}
+function closeAdmin(){document.getElementById("admin").classList.remove("open")}
+function savePrices(){document.querySelectorAll("#editor input").forEach(x=>localStorage.setItem("masih-price-"+x.dataset.i,x.value.replace(/[^0-9]/g,"")));apply();closeAdmin()}
+apply();
+</script>
 </body>
 </html>
