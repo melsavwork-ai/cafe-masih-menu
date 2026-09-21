@@ -49,28 +49,60 @@ footer{text-align:center;color:#8fa095;font-size:12px;padding:30px 10px}
 <button class="admin-toggle" onclick="openAdmin()">⚙️ ویرایش قیمت‌ها</button>
 <div class="admin" id="admin"><div class="admin-box">
 <div class="admin-head"><h2>مدیریت قیمت‌ها</h2><button class="btn" onclick="closeAdmin()">بستن</button></div>
-<p>قیمت‌ها در مرورگر همین دستگاه ذخیره می‌شوند. برای تغییر قیمت عمومی سایت، مقدار قیمت‌ها را در بخش DATA همین فایل تغییر بده و دوباره فایل را در GitHub آپلود کن.</p>
+<p>برای تغییر قیمت همه مشتری‌ها، فقط فایل <b>prices.json</b> را در GitHub ویرایش کن و روی <b>Commit changes</b> بزن. بعد از انتشار، قیمت جدید برای همه نمایش داده می‌شود.</p>
 <div id="editor"></div><br><button class="btn primary" onclick="savePrices()">ذخیره قیمت‌ها</button>
 </div></div>
 <script>
 const DATA=[
 {id:"espresso",title:"اسپرسو بار",items:[
-["دبل ۱۰۰٪ روبوستا",120000,0,0],["دبل ۷۰/۳۰",130000,1,0],["سینگل",100000,2,0],["لته ۱۰۰٪ روبوستا",170000,3,0],["لته ۷۰/۳۰",180000,4,0],["امریکانو ۱۰۰٪ روبوستا",140000,5,0],["امریکانو ۷۰/۳۰",150000,6,0],
-["کورتادو ۱۰۰٪ روبوستا",170000,0,1],["کورتادو ۷۰/۳۰",180000,1,1],["کاپوچینو",200000,2,1],["موکا ۱۰۰٪ روبوستا",230000,3,1],["موکا ۷۰/۳۰",240000,4,1],["کارامل ماکیاتو ۱۰۰٪ روبوستا",280000,5,1],["کارامل ماکیاتو ۷۰/۳۰",290000,6,1]]},
-{id:"shake",title:"شیک",items:[["شیک شکلات",340000,0,2],["شیک بادام‌زمینی",350000,1,2],["شیک موز شکلات",360000,2,2],["شیک لوتوس",360000,3,2],["شیک توت‌فرنگی وانیل",340000,6,2]]},
-{id:"smoothie",title:"اسموتی",items:[["شیر موز",320000,4,2],["کوک لیون",250000,5,2],["انبه توت‌فرنگی بستنی",370000,6,2],["معجون ترش",360000,0,3],["بلو بنانا",380000,1,3],["موهیتو",280000,2,3],["رد موهیتو",290000,3,3],["خیار سکنجبین",0,4,3],["سانرایز",370000,5,3],["ژوال",290000,6,3]]},
-{id:"fries",title:"فرایز",items:[["سیب‌زمینی",380000,0,4],["سیب‌زمینی با پنیر",520000,1,4],["سیب‌زمینی ویژه",580000,2,4]]},
-{id:"hot",title:"بار گرم",items:[["هات چاکلت",270000,3,4],["وایت چاکلت",280000,4,4],["شیرکاکائو",240000,5,4],["هات بنانا",320000,6,4],["شیر بیسکوییت",300000,0,5],["ماسالا",220000,1,5],["چای کرک",250000,2,5],["چای انگلیسی",180000,3,5],["چای ساده",130000,4,5],["چای زعفران",160000,5,5],["شیر عسل",200000,6,5]]},
+["دبل ۱۰۰٪ روبوستا",0,0,0],["دبل ۷۰/۳۰",0,1,0],["سینگل",0,2,0],["لته ۱۰۰٪ روبوستا",0,3,0],["لته ۷۰/۳۰",0,4,0],["امریکانو ۱۰۰٪ روبوستا",0,5,0],["امریکانو ۷۰/۳۰",0,6,0],
+["کورتادو ۱۰۰٪ روبوستا",0,0,1],["کورتادو ۷۰/۳۰",0,1,1],["کاپوچینو",0,2,1],["موکا ۱۰۰٪ روبوستا",0,3,1],["موکا ۷۰/۳۰",0,4,1],["کارامل ماکیاتو ۱۰۰٪ روبوستا",0,5,1],["کارامل ماکیاتو ۷۰/۳۰",0,6,1]]},
+{id:"shake",title:"شیک",items:[["شیک شکلات",0,0,2],["شیک بادام‌زمینی",0,1,2],["شیک موز شکلات",0,2,2],["شیک لوتوس",0,3,2],["شیک توت‌فرنگی وانیل",0,6,2]]},
+{id:"smoothie",title:"اسموتی",items:[["شیر موز",0,4,2],["کوک لیون",0,5,2],["انبه توت‌فرنگی بستنی",0,6,2],["معجون ترش",0,0,3],["بلو بنانا",0,1,3],["موهیتو",0,2,3],["رد موهیتو",0,3,3],["خیار سکنجبین",0,4,3],["سانرایز",0,5,3],["ژوال",0,6,3]]},
+{id:"fries",title:"فرایز",items:[["سیب‌زمینی",0,0,4],["سیب‌زمینی با پنیر",0,1,4],["سیب‌زمینی ویژه",0,2,4]]},
+{id:"hot",title:"بار گرم",items:[["هات چاکلت",0,3,4],["وایت چاکلت",0,4,4],["شیرکاکائو",0,5,4],["هات بنانا",0,6,4],["شیر بیسکوییت",0,0,5],["ماسالا",0,1,5],["چای کرک",0,2,5],["چای انگلیسی",0,3,5],["چای ساده",0,4,5],["چای زعفران",0,5,5],["شیر عسل",0,6,5]]},
 {id:"panini",title:"پنینی",items:[["پنینی مرغ",0,0,6],["پنینی ژامبون",0,1,6],["پنینی گوشت",0,2,6]]}
 ];
-const menu=document.getElementById("menu");let all=[];
-DATA.forEach(sec=>{let s=document.createElement("section");s.id=sec.id;s.innerHTML='<div class="section-title"><span>'+sec.title+'</span></div><div class="grid"></div>';let g=s.querySelector(".grid");
-sec.items.forEach((x)=>{let i=all.length;all.push(x);let [name,price,c,r]=x;let el=document.createElement("article");el.className="item";el.innerHTML='<div class="thumb" style="background-position:'+(c*16.6667)+'% '+(r*16.6667)+'%"></div><div class="info"><div class="name">'+name+'</div><div class="price" id="p'+i+'">'+(price?Number(price).toLocaleString("fa-IR")+" تومان":"قیمت بعداً اضافه می‌شود")+'</div></div>';g.appendChild(el)});menu.appendChild(s)});
-function apply(){all.forEach((x,i)=>{let v=localStorage.getItem("masih-price-"+i);if(v!==null){document.getElementById("p"+i).textContent=v?Number(v).toLocaleString("fa-IR")+" تومان":"قیمت بعداً اضافه می‌شود"}})}
-function openAdmin(){let e=document.getElementById("editor");e.innerHTML="";all.forEach((x,i)=>{let v=localStorage.getItem("masih-price-"+i);if(v===null)v=x[1]||"";e.innerHTML+='<div class="editor-row"><label>'+x[0]+'</label><input inputmode="numeric" data-i="'+i+'" value="'+v+'"></div>'});document.getElementById("admin").classList.add("open")}
+
+const menu=document.getElementById("menu"); let all=[]; let PRICES={};
+
+function render(){
+  menu.innerHTML=""; all=[];
+  DATA.forEach(sec=>{
+    let s=document.createElement("section"); s.id=sec.id;
+    s.innerHTML='<div class="section-title"><span>'+sec.title+'</span></div><div class="grid"></div>';
+    let g=s.querySelector(".grid");
+    sec.items.forEach(x=>{
+      let i=all.length; all.push(x);
+      let [name,_,c,r]=x; let price=PRICES[name]||0;
+      let el=document.createElement("article"); el.className="item";
+      el.innerHTML='<div class="thumb" style="background-position:'+(c*16.6667)+'% '+(r*16.6667)+'%"></div><div class="info"><div class="name">'+name+'</div><div class="price" id="p'+i+'">'+(price?Number(price).toLocaleString("fa-IR")+" تومان":"قیمت بعداً اضافه می‌شود")+'</div></div>';
+      g.appendChild(el);
+    });
+    menu.appendChild(s);
+  });
+}
+
+async function loadPrices(){
+  try{
+    const r=await fetch("prices.json?t="+Date.now(),{cache:"no-store"});
+    PRICES=await r.json();
+  }catch(e){PRICES={};}
+  render();
+}
+function openAdmin(){
+  let e=document.getElementById("editor"); e.innerHTML="";
+  all.forEach((x,i)=>{
+    let name=x[0],v=PRICES[name]||"";
+    e.innerHTML+='<div class="editor-row"><label>'+name+'</label><input data-name="'+name.replaceAll('"','&quot;')+'" inputmode="numeric" value="'+v+'"></div>';
+  });
+  document.getElementById("admin").classList.add("open");
+}
 function closeAdmin(){document.getElementById("admin").classList.remove("open")}
-function savePrices(){document.querySelectorAll("#editor input").forEach(x=>localStorage.setItem("masih-price-"+x.dataset.i,x.value.replace(/[^0-9]/g,"")));apply();closeAdmin()}
-apply();
+function savePrices(){
+  alert("برای تغییر عمومی قیمت، فایل prices.json را در GitHub ویرایش و Commit کن. دکمه ذخیره اینجا فقط برای راهنمایی است.");
+}
+loadPrices();
 </script>
 </body>
 </html>
